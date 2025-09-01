@@ -28,12 +28,12 @@ if __name__ == "__main__":
         print(f"Arquivo CSV não encontrado em: {csv_path}")
         sys.exit(1)
 
-    vi_mod = load_module_from_path("ValueImporter", ROOT / "ValueImporter.py")
+    vi_mod = load_module_from_path("ValueImporter", ROOT / "value_importer.py")
     ValueImporter = vi_mod.ValueImporter
 
-    pp_path = ROOT / "PricePlotter"
+    pp_path = ROOT / "price_plotter"
     if not pp_path.exists():
-        pp_path = ROOT / "PricePlotter.py"
+        pp_path = ROOT / "price_plotter.py"
     pp_mod = load_module_from_path("PricePlotter", pp_path)
     PricePlotter = pp_mod.PricePlotter
 

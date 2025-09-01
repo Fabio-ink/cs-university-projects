@@ -10,3 +10,5 @@ class Agent:
   def perception(self):
     iin = input("Enter some Value")
     self.perceptionHistory.append(iin)
+    
+    
