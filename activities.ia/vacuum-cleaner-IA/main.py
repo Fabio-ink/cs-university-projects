@@ -1,14 +1,13 @@
-from Environment import Environment
-from VacuumC import VacuumC
+from vacuumC import Vacuum
+from environment import Environment
 
 environment = Environment()
-vacuumC = VacuumC()
+vacuum = Vacuum()
 
-print("Original state")
+print('Initial state')
 environment.show()
 
-for _ in range(4):
-    vacuumC.act(environment)
+for _ in range(9):
+	vacuum.action(environment)
 
-print("Final state")
 environment.show()
