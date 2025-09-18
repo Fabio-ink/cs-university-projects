@@ -1,4 +1,4 @@
-def mediaMovel(serie):
+def mediaMovelCumulativa(serie):
     medias = []
     for i, v in enumerate(serie):
         if i == 0:

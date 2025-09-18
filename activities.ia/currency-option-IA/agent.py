@@ -1,14 +1,10 @@
 class Agent:
-  def __init__(self, state=None, functionAgent=None):
-    self.state = state
-    self.functionAgent = functionAgent
-    self.perceptionHistory = []
+  def __init__(self, estadoInicial=None, funcaoAgent=None):
+    self.state = estadoInicial
+    self.functionAgent = funcaoAgent
 
-  def showState(self):
-    return str(self.state)
+  def percepcao(self, ambiente_state):
+    raise NotImplementedError("O método 'percepcao' deve ser implementado pela subclasse.")
 
-  def perception(self):
-    iin = input("Enter some Value")
-    self.perceptionHistory.append(iin)
-    
-    
+  def saida(self):
+    raise NotImplementedError("O método 'saida' deve ser implementado pela subclasse.")

@@ -1,22 +1,33 @@
-class AgentCambioDesempenho():
+from agent import Agent
 
-    def __init__(self, estado = None, funcaoAgent = None, saldoR = 0, saldoD = 0):
-        super().__init__(estado, funcaoAgent)
-        self.saldoR = saldoR
-        self.saldoD = saldoD
-        self.evoulucaoReal = []
+class AgentCambioDesempenho(Agent):
+
+    def __init__(self, estadoInicial = None, funcaoAgent = None, saldoReal = 1000.0, saldoDolar = 0.0):
+        super().__init__(estadoInicial, funcaoAgent)
+        if self.state is None:
+            self.state = []
+        self.saldoReal = saldoReal
+        self.saldoDolar = saldoDolar
+        self.evolucaoReal = [self.saldoReal]
+
+    def percepcao(self, valorAtual: float):
+        self.state.append(valorAtual)
+        portfolio_value = self.saldoReal + self.saldoDolar * valorAtual
+        self.evolucaoReal.append(portfolio_value)
         
     def comprar(self):
         if self.saldoReal > 0:
-            self.saldoD += self.saldoReal / self.estado[-1]
-            self.saldoReal = 0
+            preco = self.state[-1]
+            self.saldoDolar += self.saldoReal / preco
+            self.saldoReal = 0.0
         
     def vender(self):
         if self.saldoDolar > 0:
-            self.saldoR += self.saldoDolar * self.estado[-1]
+            preco = self.state[-1]
+            self.saldoReal += self.saldoDolar * preco
             self.saldoDolar = 0
-        self.evolucaoReal.append(self.saldoR)
 
     def desempenho(self):
-        print("DESEMPENHO")
+        if not self.evolucaoReal or len(self.evolucaoReal) < 2:
+            return 0.0
         return self.evolucaoReal[-1] - self.evolucaoReal[0]
